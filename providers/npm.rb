@@ -17,9 +17,10 @@ def load_current_resource
   @json_exists = false
   @json_path = new_resource.json_path
   @path= new_resource.path
-  @npm_bin_path= new_resource.nodejs_version ? "#{nvm_root}/#{new_resource.nodejs_version}/bin/npm ": 'npm'
+  @npm_bin_path= new_resource.nodejs_version ? "#{nvm_root}/versions/#{new_resource.nodejs_version}/bin/npm ": 'npm'
   @registry_set = @registry ? "--registry #{@registry}": ''
   @install_flag_arg = new_resource.local_flag ? '': '-g'
+  @options = new_resource.options
   
   if @json_path
     if ::File.exists?(::File.join(@json_path, 'package.json'))
@@ -39,10 +40,10 @@ def action_install
       Chef::Log.logger.info("#{new_resource} is already installed - nothing to do")
       return 
     end
-    command = %{#{@npm_bin_path} --no-color install #{@registry_set} #{@install_flag_arg} #{@name}}
+    command = %{#{@npm_bin_path} --no-color install #{@registry_set} #{@install_flag_arg} #{@name} #{@options}}
     path = @path ? @path : ENV['HOME']
   else
-    command = %{#{@npm_bin_path} --no-color install #{@registry_set}}
+    command = %{#{@npm_bin_path} --no-color install #{@registry_set} #{@options}}
     path = @json_path
   end
 
