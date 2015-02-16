@@ -1,6 +1,6 @@
 # git repository
 default['nvm']['git_url'] = 'https://github.com/creationix/nvm.git'
-default['nvm']['git_ref'] = 'v0.7.0'
+default['nvm']['git_ref'] = 'v0.19.0'
 
 default['nvm']['root_path'] = '/usr/local/nvm'
 default['nvm']['user'] = 'root'

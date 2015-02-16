@@ -17,6 +17,7 @@ attribute :registry,       :kind_of => String
 attribute :root_path,      :kind_of => String
 attribute :path,           :kind_of => String
 attribute :json_path,      :kind_of => String
+attribute :options,        :kind_of => String
 
 def initialize(*args)
   super
